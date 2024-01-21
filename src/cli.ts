@@ -27,7 +27,7 @@ cli(
 			},
 			gitmoji: {
 				type: Boolean,
-				description: "Toggle whether to use a Gitmoji or not",
+				description: "Toggle whether to use a Gitmoji or not (default: false)",
 				alias: "j",
 				default: false,
 			},
