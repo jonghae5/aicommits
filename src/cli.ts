@@ -68,6 +68,7 @@ cli(
 				argv.flags.exclude,
 				argv.flags.all,
 				argv.flags.type,
+				argv.flags.gitmoji,
 				rawArgv
 			);
 		}
