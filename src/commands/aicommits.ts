@@ -85,7 +85,7 @@ export default async (
 			throw new KnownError("No commit messages were generated. Try again.");
 		}
 
-		let message: string;
+		let message: string | any;
 		if (messages.length === 1) {
 			[message] = messages;
 			const confirmed = await confirm({
