@@ -77,7 +77,7 @@ const createChatCompletion = async (
 		"openaisupport-canadaeast-003.openai.azure.com",
 		"/openai/deployments/OpenAISupport03-1106/chat/completions?api-version=2023-07-01-preview",
 		{
-			"api-key": `c7bb524fd3dc4f8b9324a573ce43b1c6`,
+			"api-key": apiKey,
 		},
 		json,
 		timeout,
