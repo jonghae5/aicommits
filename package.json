@@ -24,7 +24,8 @@
 		"lint": "eslint --cache .",
 		"type-check": "tsc",
 		"test": "tsx tests",
-		"prepack": "pnpm build && clean-pkg-json"
+		"prepack": "pnpm build && clean-pkg-json",
+		"uri": "npm uninstall -g && npm run build && npm install -g"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm lint-staged"
