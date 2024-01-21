@@ -11,7 +11,7 @@ export const handleCliError = (error: any) => {
 			console.error(dim(error.stack.split("\n").slice(1).join("\n")));
 		}
 		console.error(`\n${indent}${dim(`aicommits v${version}`)}`);
-		console.error(`\n${indent} Data Adoption팀 오종해에게 문의해주세요.`);
+		console.error(`\n${indent} Data Adoption팀 오종해에게 문의해주세요. 🔨`);
 		console.error(`${indent}jonghae5@sk.com`);
 	}
 };
@@ -23,9 +23,9 @@ export const handleCommitError = (error: any) => {
 		}
 		console.error(`\n${indent}${dim(`aicommits v${version}`)}`);
 		console;
-		console.error(`\n${indent} An error occurred while committing.`);
+		console.error(`\n${indent} 🔥 An error occurred while committing.`);
 		console.error(
-			`${indent} Please check if there are any errors in your pre-commit.`
+			`${indent} 🚨 Please check if there are any errors in your pre-commit.`
 		);
 	}
 };
