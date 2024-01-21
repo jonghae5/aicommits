@@ -55,8 +55,6 @@ dacommits
 
 `dacommits` passes down unknown flags to `git commit`, so you can pass in [`commit` flags](https://git-scm.com/docs/git-commit).
 
----
-
 추적되고 있는 파일들을 모두 stage에 올려서 실행해보고 싶다면, 아래와 같은 명령어를 입력 해보세요.
 For example, you can stage all changes in tracked files with as you commit:
 
@@ -80,6 +78,18 @@ dacommits --generate <i> # or -g <i>
 ```
 
 > Warning: 생성되는 수에 비례하여 과금이 됩니다...
+
+---
+
+#### Gitmoji 사용 방법 🔥
+
+⚡️🐛✨🚀 와 같은 Gitmoji를 Commit Message 앞에 작성하고 싶다면 아래와 같은 명령어를 작성해보세요! [Gitmoji](https://gitmoji.dev/)
+
+```sh
+dacommits --gitmoji # or -j
+```
+
+---
 
 #### Convential Commit 생성 방법
 
@@ -252,11 +262,11 @@ You can clear this option by setting it to an empty string:
 dacommits config set type=
 ```
 
-## How it works (어떻게 작동 하나요?)
-
-This CLI tool runs `git diff` to grab all your latest code changes, sends them to OpenAI's GPT-3, then returns the AI generated commit message.
+## 어떻게 작동 하나요? (How it works)
 
 이 CLI 도구는 git diff를 실행하여 최신 코드 변경 사항을 모두 가져오고, 이를 OpenAI의 GPT로 전송한 다음, 생성된 AI 커밋 메시지를 반환합니다.
+
+This CLI tool runs `git diff` to grab all your latest code changes, sends them to OpenAI's GPT-3, then returns the AI generated commit message.
 
 ## Maintainers
 
