@@ -61,7 +61,7 @@ cli(
 	},
 	(argv) => {
 		if (isCalledFromGitHook) {
-			prepareCommitMessageHook();
+			prepareCommitMessageHook(argv.flags.gitmoji);
 		} else {
 			aicommits(
 				argv.flags.generate,
