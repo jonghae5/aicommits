@@ -8,7 +8,7 @@ import { KnownError, handleCliError } from "../utils/error.js";
 
 const [messageFilePath, commitSource] = process.argv.slice(2);
 
-export default (gitmoji) =>
+export default (gitmoji: boolean) =>
 	(async () => {
 		if (!messageFilePath) {
 			throw new KnownError(
