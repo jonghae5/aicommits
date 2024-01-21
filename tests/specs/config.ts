@@ -5,12 +5,12 @@ import { createFixture } from "../utils.js";
 
 export default testSuite(({ describe }) => {
 	describe("config", async ({ test, describe }) => {
-		const { fixture, aicommits } = await createFixture();
-		const configPath = path.join(fixture.path, ".aicommits");
+		const { fixture, dacommits } = await createFixture();
+		const configPath = path.join(fixture.path, ".dacommits");
 		const openAiToken = "OPENAI_KEY=sk-abc";
 
 		test("set unknown config file", async () => {
-			const { stderr } = await aicommits(["config", "set", "UNKNOWN=1"], {
+			const { stderr } = await dacommits(["config", "set", "UNKNOWN=1"], {
 				reject: false,
 			});
 
@@ -18,7 +18,7 @@ export default testSuite(({ describe }) => {
 		});
 
 		// test('set invalid OPENAI_KEY', async () => {
-		// 	const { stderr } = await aicommits(['config', 'set', 'OPENAI_KEY=abc'], {
+		// 	const { stderr } = await dacommits(['config', 'set', 'OPENAI_KEY=abc'], {
 		// 		reject: false,
 		// 	});
 
@@ -26,21 +26,21 @@ export default testSuite(({ describe }) => {
 		// });
 
 		await test("set config file", async () => {
-			await aicommits(["config", "set", openAiToken]);
+			await dacommits(["config", "set", openAiToken]);
 
 			const configFile = await fs.readFile(configPath, "utf8");
 			expect(configFile).toMatch(openAiToken);
 		});
 
 		await test("get config file", async () => {
-			const { stdout } = await aicommits(["config", "get", "OPENAI_KEY"]);
+			const { stdout } = await dacommits(["config", "get", "OPENAI_KEY"]);
 			expect(stdout).toBe(openAiToken);
 		});
 
 		await test("reading unknown config", async () => {
 			await fs.appendFile(configPath, "UNKNOWN=1");
 
-			const { stdout, stderr } = await aicommits(["config", "get", "UNKNOWN"], {
+			const { stdout, stderr } = await dacommits(["config", "get", "UNKNOWN"], {
 				reject: false,
 			});
 
@@ -50,7 +50,7 @@ export default testSuite(({ describe }) => {
 
 		await describe("timeout", ({ test }) => {
 			test("setting invalid timeout config", async () => {
-				const { stderr } = await aicommits(["config", "set", "timeout=abc"], {
+				const { stderr } = await dacommits(["config", "set", "timeout=abc"], {
 					reject: false,
 				});
 
@@ -59,19 +59,19 @@ export default testSuite(({ describe }) => {
 
 			test("setting valid timeout config", async () => {
 				const timeout = "timeout=20000";
-				await aicommits(["config", "set", timeout]);
+				await dacommits(["config", "set", timeout]);
 
 				const configFile = await fs.readFile(configPath, "utf8");
 				expect(configFile).toMatch(timeout);
 
-				const get = await aicommits(["config", "get", "timeout"]);
+				const get = await dacommits(["config", "get", "timeout"]);
 				expect(get.stdout).toBe(timeout);
 			});
 		});
 
 		await describe("max-length", ({ test }) => {
 			test("must be an integer", async () => {
-				const { stderr } = await aicommits(
+				const { stderr } = await dacommits(
 					["config", "set", "max-length=abc"],
 					{
 						reject: false,
@@ -82,7 +82,7 @@ export default testSuite(({ describe }) => {
 			});
 
 			test("must be at least 20 characters", async () => {
-				const { stderr } = await aicommits(["config", "set", "max-length=10"], {
+				const { stderr } = await dacommits(["config", "set", "max-length=10"], {
 					reject: false,
 				});
 
@@ -90,29 +90,29 @@ export default testSuite(({ describe }) => {
 			});
 
 			test("updates config", async () => {
-				const defaultConfig = await aicommits(["config", "get", "max-length"]);
+				const defaultConfig = await dacommits(["config", "get", "max-length"]);
 				expect(defaultConfig.stdout).toBe("max-length=50");
 
 				const maxLength = "max-length=60";
-				await aicommits(["config", "set", maxLength]);
+				await dacommits(["config", "set", maxLength]);
 
 				const configFile = await fs.readFile(configPath, "utf8");
 				expect(configFile).toMatch(maxLength);
 
-				const get = await aicommits(["config", "get", "max-length"]);
+				const get = await dacommits(["config", "get", "max-length"]);
 				expect(get.stdout).toBe(maxLength);
 			});
 		});
 
 		await test("set config file", async () => {
-			await aicommits(["config", "set", openAiToken]);
+			await dacommits(["config", "set", openAiToken]);
 
 			const configFile = await fs.readFile(configPath, "utf8");
 			expect(configFile).toMatch(openAiToken);
 		});
 
 		await test("get config file", async () => {
-			const { stdout } = await aicommits(["config", "get", "OPENAI_KEY"]);
+			const { stdout } = await dacommits(["config", "get", "OPENAI_KEY"]);
 			expect(stdout).toBe(openAiToken);
 		});
 
