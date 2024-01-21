@@ -1,6 +1,6 @@
 import { cli } from "cleye";
 import { description, version } from "../package.json";
-import aicommits from "./commands/aicommits.js";
+import dacommits from "./commands/dacommits.js";
 import prepareCommitMessageHook from "./commands/prepare-commit-msg-hook.js";
 import configCommand from "./commands/config.js";
 import hookCommand, { isCalledFromGitHook } from "./commands/hook.js";
@@ -9,7 +9,7 @@ const rawArgv = process.argv.slice(2);
 
 cli(
 	{
-		name: "aicommits",
+		name: "dacommits",
 
 		version,
 
@@ -63,7 +63,7 @@ cli(
 		if (isCalledFromGitHook) {
 			prepareCommitMessageHook(argv.flags.gitmoji);
 		} else {
-			aicommits(
+			dacommits(
 				argv.flags.generate,
 				argv.flags.exclude,
 				argv.flags.all,

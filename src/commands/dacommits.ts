@@ -30,7 +30,7 @@ export default async (
 	rawArgv: string[]
 ) =>
 	(async () => {
-		intro(bgCyan(black(" aicommits ")));
+		intro(bgCyan(black(" dacommits ")));
 		await assertGitRepo();
 
 		const detectingFiles = spinner();

@@ -27,7 +27,7 @@ export default (gitmoji: boolean) =>
 			return;
 		}
 
-		intro(bgCyan(black(" aicommits ")));
+		intro(bgCyan(black(" dacommits ")));
 
 		const { env } = process;
 		const config = await getConfig({
