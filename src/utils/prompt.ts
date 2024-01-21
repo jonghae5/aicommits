@@ -39,6 +39,7 @@ const commitTypes: Record<CommitType, string> = {
 };
 
 export const generatePrompt = (
+	gitmoji: boolean,
 	locale: string,
 	maxLength: number,
 	type: CommitType
@@ -49,6 +50,11 @@ export const generatePrompt = (
 		`Commit message must be a maximum of ${maxLength} characters.`,
 		"Exclude anything unnecessary such as translation. Your entire response will be passed directly into git commit.",
 		commitTypes[type],
+		`${
+			gitmoji
+				? "and you will classify the commit category preface with the suitable Gitmoji markup between colons:"
+				: "without prefacing it with anything, the response must be in the lang"
+		}:\n`,
 		specifyCommitFormat(type),
 	]
 		.filter(Boolean)

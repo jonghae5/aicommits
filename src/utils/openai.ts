@@ -131,6 +131,7 @@ const deduplicateMessages = (array: string[]) => Array.from(new Set(array));
 // };
 
 export const generateCommitMessage = async (
+	gitmoji: boolean = false,
 	apiKey: string,
 	model: TiktokenModel,
 	locale: string,
@@ -149,7 +150,7 @@ export const generateCommitMessage = async (
 				messages: [
 					{
 						role: "system",
-						content: generatePrompt(locale, maxLength, type),
+						content: generatePrompt(gitmoji, locale, maxLength, type),
 					},
 					{
 						role: "user",
