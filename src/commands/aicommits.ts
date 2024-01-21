@@ -15,7 +15,11 @@ import {
 } from "../utils/git.js";
 import { getConfig } from "../utils/config.js";
 import { generateCommitMessage } from "../utils/openai.js";
-import { KnownError, handleCliError } from "../utils/error.js";
+import {
+	KnownError,
+	handleCliError,
+	handleCommitError,
+} from "../utils/error.js";
 
 export default async (
 	generate: number | undefined,
@@ -109,8 +113,13 @@ export default async (
 
 			message = selected;
 		}
-
-		await execa("git", ["commit", "-m", message, ...rawArgv]);
+		try {
+			await execa("git", ["commit", "-m", message, ...rawArgv]);
+		} catch (err: any) {
+			outro(`${red("✖")} ${err.message}`);
+			handleCommitError(err);
+			process.exit(1);
+		}
 
 		outro(`${green("✔")} Successfully committed!`);
 	})().catch((error) => {
